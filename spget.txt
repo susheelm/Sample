@@ -1,0 +1,18 @@
+USE [DB_SMS]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_get_subject_details_exam_by_class_id]    Script Date: 10/26/2018 11:17:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+ALTER proc [dbo].[sp_get_subject_details_exam_by_class_id]
+@class_id int
+as
+SELECT DISTINCT tbl_exam_master_details.class_id, tbl_exam_master_details.sub_id, tbl_subject_master.sub_name
+FROM         tbl_exam_master_details INNER JOIN
+                      tbl_subject_master ON tbl_exam_master_details.sub_id = tbl_subject_master.sub_id
+WHERE     (tbl_exam_master_details.class_id = @class_id)
